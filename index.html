@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpCode - Solicitação de Apoio</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f7f7f7; color: #333; }
+        .container { max-width: 600px; margin: auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
+        .logo { text-align: center; margin-bottom: 20px; }
+        .logo img { max-width: 150px; }
+        h1 { color: #333; text-align: center; }
+        label { font-weight: bold; color: #555; }
+        select, input, textarea { width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; }
+        .optional { font-style: italic; color: grey; }
+        button { width: 100%; padding: 10px; background-color: #007BFF; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="logo.png" alt="Logo HelpCode"> <!-- Logo local -->
+        </div>
+        <h1>HelpCode - Solicitação de Apoio</h1>
+        <form id="supportForm">
+            <label for="supportType">Tipo de apoio necessário:</label>
+            <select id="supportType" name="supportType" required>
+                <option value="">Selecione o tipo de apoio</option>
+                <option value="medico">Médico</option>
+                <option value="psicologico">Psicológico</option>
+                <option value="seguranca">Segurança</option>
+                <option value="educacional">Educacional</option> <!-- Nova opção -->
+                <option value="outro">Outro</option>
+            </select>
+
+            <label for="floor">Andar:</label>
+            <input type="text" id="floor" name="floor" placeholder="Ex: 3º Andar" required>
+
+            <label for="room">Sala: <span class="optional">(opcional)</span></label>
+            <input type="text" id="room" name="room" placeholder="Ex: Sala 305">
+
+            <label for="disability">Você é uma pessoa com deficiência física?</label>
+            <select id="disability" name="disability" required>
+                <option value="">Selecione uma opção</option>
+                <option value="nao">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+
+            <div id="disabilityOptions" style="display: none;">
+                <label for="disabilityType">Tipo de deficiência:</label>
+                <select id="disabilityType" name="disabilityType">
+                    <option value="motora">Motora</option>
+                    <option value="visual">Visual</option>
+                    <option value="auditiva">Auditiva</option>
+                    <option value="outra">Outra</option>
+                </select>
+            </div>
+
+            <label for="comments">Comentários: <span class="optional">(opcional)</span></label>
+            <textarea id="comments" name="comments" rows="4" placeholder="Adicione informações adicionais..."></textarea>
+
+            <button type="button" onclick="submitSupportRequest()">Enviar Solicitação</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("disability").addEventListener("change", function () {
+            const disabilityOptions = document.getElementById("disabilityOptions");
+            disabilityOptions.style.display = this.value === "sim" ? "block" : "none";
+        });
+
+        function submitSupportRequest() {
+            const supportType = document.getElementById("supportType").value;
+            const floor = document.getElementById("floor").value;
+            const room = document.getElementById("room").value || "Não especificada";
+            const disability = document.getElementById("disability").value;
+            const disabilityType = document.getElementById("disabilityType").value || "Não especificada";
+            const comments = document.getElementById("comments").value || "Nenhum";
+
+            const message = `
+                Apoio Necessário: ${supportType}
+                Andar: ${floor}
+                Sala: ${room}
+                Deficiência Física: ${disability === "sim" ? disabilityType : "Não"}
+                Comentários: ${comments}
+            `;
+
+            window.open(https://wa.me/+55011970216215?text=${encodeURIComponent(message)}, '_blank');
+        }
+    </script>
+</body>
+</html>
